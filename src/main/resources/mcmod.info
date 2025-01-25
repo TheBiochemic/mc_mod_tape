@@ -1,16 +1,16 @@
 [
-{
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+  {
+    "modid": "tape",
+    "name": "Tape",
+    "description": "Simple Mod that adds a few types of tape, that you can use to decorate your Base or designate areas with",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["Biochemist"],
+    "credits": "Forge, FML as Libraries and Frameworks",
+    "logoFile": "assets/tape/icon.png",
+    "screenshots": [],
+    "dependencies": []
+  }
 ]

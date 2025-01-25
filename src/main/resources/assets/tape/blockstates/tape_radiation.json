@@ -1,0 +1,30 @@
+{
+  "forge_marker": 1,
+
+  "defaults": {
+    "textures": {
+
+        "tape": "tape:blocks/tape_radiation"
+    }
+  },
+
+  "variants": {
+
+    "northeast=false,northwest=false,southeast=false,southwest=false": { "model": "tape:tape_full" },
+    "northeast=false,northwest=true,southeast=false,southwest=false": { "model": "tape:tape_corner" },
+    "northeast=true,northwest=false,southeast=false,southwest=false": { "model": "tape:tape_corner", "y": 90, "uvlock": true },
+    "northeast=true,northwest=true,southeast=false,southwest=false": { "model": "tape:tape_side" },
+    "northeast=false,northwest=false,southeast=false,southwest=true": { "model": "tape:tape_corner", "y": 270, "uvlock": true },
+    "northeast=false,northwest=true,southeast=false,southwest=true": { "model": "tape:tape_side", "y": 270, "uvlock": true },
+    "northeast=true,northwest=false,southeast=false,southwest=true": { "model": "tape:tape_diagonal" },
+    "northeast=true,northwest=true,southeast=false,southwest=true": { "model": "tape:tape_inner_corner" },
+    "northeast=false,northwest=false,southeast=true,southwest=false": { "model": "tape:tape_corner", "y": 180, "uvlock": true },
+    "northeast=false,northwest=true,southeast=true,southwest=false": { "model": "tape:tape_diagonal", "y": 90, "uvlock": true },
+    "northeast=true,northwest=false,southeast=true,southwest=false": { "model": "tape:tape_side", "y": 90, "uvlock": true },
+    "northeast=true,northwest=true,southeast=true,southwest=false": { "model": "tape:tape_inner_corner", "y": 90, "uvlock": true },
+    "northeast=false,northwest=false,southeast=true,southwest=true": { "model": "tape:tape_side", "y": 180, "uvlock": true },
+    "northeast=false,northwest=true,southeast=true,southwest=true": { "model": "tape:tape_inner_corner", "y": 270, "uvlock": true },
+    "northeast=true,northwest=false,southeast=true,southwest=true": { "model": "tape:tape_inner_corner", "y": 180, "uvlock": true },
+    "northeast=true,northwest=true,southeast=true,southwest=true": { "model": "tape:tape_full" }
+  }
+}

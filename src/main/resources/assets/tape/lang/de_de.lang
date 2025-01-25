@@ -1,0 +1,11 @@
+#creative tabs
+itemGroup.tape=Klebebänder
+
+#blocks
+tile.tape.tape_blank.name=Klebeband
+tile.tape.tape_hazard.name=Klebeband (Physische Gefahr)
+tile.tape.tape_protection.name=Klebeband (Brandschutz)
+tile.tape.tape_defective.name=Klebeband (Defekte Maschinen)
+tile.tape.tape_safety.name=Klebeband (Sicherheit)
+tile.tape.tape_radiation.name=Klebeband (Strahlungsgefahr)
+tile.tape.tape_guidance.name=Klebeband (Orientierung)

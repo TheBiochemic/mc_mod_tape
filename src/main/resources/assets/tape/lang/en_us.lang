@@ -1,0 +1,11 @@
+#creative tabs
+itemGroup.tape=Tapes
+
+#blocks
+tile.tape.tape_blank.name=Adhesive Tape
+tile.tape.tape_hazard.name=Adhesive Tape (Physical Hazard)
+tile.tape.tape_protection.name=Adhesive Tape (Fire Protection)
+tile.tape.tape_defective.name=Adhesive Tape (Defective Machinery)
+tile.tape.tape_safety.name=Adhesive Tape (Safety)
+tile.tape.tape_radiation.name=Adhesive Tape (Radiation Hazard)
+tile.tape.tape_guidance.name=Adhesive Tape (Guidance)
