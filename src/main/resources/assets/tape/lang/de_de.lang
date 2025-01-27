@@ -2,10 +2,13 @@
 itemGroup.tape=Klebebänder
 
 #blocks
-tile.tape.tape_blank.name=Klebeband
-tile.tape.tape_hazard.name=Klebeband (Physische Gefahr)
-tile.tape.tape_protection.name=Klebeband (Brandschutz)
-tile.tape.tape_defective.name=Klebeband (Defekte Maschinen)
-tile.tape.tape_safety.name=Klebeband (Sicherheit)
-tile.tape.tape_radiation.name=Klebeband (Strahlungsgefahr)
-tile.tape.tape_guidance.name=Klebeband (Orientierung)
+tile.tape.tape.name=Klebeband
+
+#items
+tape.tape_blank.name=Klebeband
+tape.tape_hazard.name=Klebeband (Physische Gefahr)
+tape.tape_protection.name=Klebeband (Brandschutz)
+tape.tape_defective.name=Klebeband (Defekte Maschinen)
+tape.tape_safety.name=Klebeband (Sicherheit)
+tape.tape_radiation.name=Klebeband (Strahlungsgefahr)
+tape.tape_guidance.name=Klebeband (Orientierung)

@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+
+  "defaults": {
+    "textures": {
+        "tape": "tape:blocks/tape"
+    }
+  },
+
+  "variants": {
+      "normal": [{
+        "model":"tape:tape"
+      }]
+  }
+}

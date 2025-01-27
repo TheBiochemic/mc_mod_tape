@@ -12,9 +12,12 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
 
         CreativeTabRegistry.registerCreativeTabs();
+        TileEntityRegistry.registerTileEntities();
     }
 
-    public void init(FMLInitializationEvent e) {}
+    public void init(FMLInitializationEvent e) {
+        RecipeRegistry.setupRecipes();
+    }
 
     public void postInit(FMLPostInitializationEvent e) {}
 }

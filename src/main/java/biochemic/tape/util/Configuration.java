@@ -1,7 +1,8 @@
 package biochemic.tape.util;
 
 import biochemic.tape.TapeMod;
-import net.minecraft.world.DimensionType;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.client.gui.ForgeGuiFactory.ForgeConfigGui;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -10,6 +11,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = TapeMod.MODID)
 public class Configuration {
+    
+    @Config.Comment("The max Squared Distance at which the TapeBlock is still rendering")
+    public static double renderTileEntityDistance = 4096.0D;
 
     /*@Config.Comment("Configure recipe related stuff here")
     public static final ConfigRecipes recipes = new ConfigRecipes();
