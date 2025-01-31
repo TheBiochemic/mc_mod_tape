@@ -15,6 +15,12 @@ public class Configuration {
     @Config.Comment("The max Squared Distance at which the TapeBlock is still rendering")
     public static double renderTileEntityDistance = 4096.0D;
 
+    @Config.Comment("Enable all the Tapes, that are simple colors")
+    public static boolean enableColors = true;
+
+    @Config.Comment("Enable all the Tapes, that have a pattern")
+    public static boolean enablePatterns = true;
+
     /*@Config.Comment("Configure recipe related stuff here")
     public static final ConfigRecipes recipes = new ConfigRecipes();
     public static class ConfigRecipes {

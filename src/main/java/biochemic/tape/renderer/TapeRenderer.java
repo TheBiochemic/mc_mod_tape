@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 public class TapeRenderer extends TileEntitySpecialRenderer<TileEntityTape> {
 
     private static final ResourceLocation texture = new ResourceLocation("tape:textures/entity/tape.png");
-    private static final double textureStep = 1.0F / 7.0F;
+    private static final double textureStep = 1.0F / 22.0F;
     private static final double thickness = 1.0F / 64.0F;
 
     @Override
@@ -57,7 +57,7 @@ public class TapeRenderer extends TileEntitySpecialRenderer<TileEntityTape> {
             this.bindTexture(texture);
 
             GL11.glDepthMask(true);
-            bufferBuilder.begin(GL11.GL_TRIANGLES, DefaultVertexFormats.POSITION_TEX);
+            bufferBuilder.begin(GL11.GL_TRIANGLES, DefaultVertexFormats.POSITION_TEX_NORMAL);
 
             //Setup the triangles for bottom
             this.buildSingleFaceBottom(bufferBuilder, tileEntityTape.bottom.getVerticalBackLeft(), 0.0, 0.0);
@@ -104,13 +104,13 @@ public class TapeRenderer extends TileEntitySpecialRenderer<TileEntityTape> {
         double tx = (((double)index - 1) + x) * textureStep;
         double tx2 = tx + textureStep * 0.5;
 
-        bufferBuilder.pos(x, 1.0 - thickness, y).tex(tx, y).endVertex();
-        bufferBuilder.pos(x + 0.5, 1.0 - thickness, y).tex(tx2, y).endVertex();
-        bufferBuilder.pos(x, 1.0 - thickness, y + 0.5).tex(tx, y + 0.5).endVertex();
+        bufferBuilder.pos(x, 1.0 - thickness, y).tex(tx, y).normal(0, -1, 0).endVertex();
+        bufferBuilder.pos(x + 0.5, 1.0 - thickness, y).tex(tx2, y).normal(0, -1, 0).endVertex();
+        bufferBuilder.pos(x, 1.0 - thickness, y + 0.5).tex(tx, y + 0.5).normal(0, -1, 0).endVertex();
 
-        bufferBuilder.pos(x + 0.5, 1.0 - thickness, y + 0.5).tex(tx2, y + 0.5).endVertex();
-        bufferBuilder.pos(x, 1.0 - thickness, y + 0.5).tex(tx, y + 0.5).endVertex();
-        bufferBuilder.pos(x + 0.5, 1.0 - thickness, y).tex(tx2, y).endVertex();
+        bufferBuilder.pos(x + 0.5, 1.0 - thickness, y + 0.5).tex(tx2, y + 0.5).normal(0, -1, 0).endVertex();
+        bufferBuilder.pos(x, 1.0 - thickness, y + 0.5).tex(tx, y + 0.5).normal(0, -1, 0).endVertex();
+        bufferBuilder.pos(x + 0.5, 1.0 - thickness, y).tex(tx2, y).normal(0, -1, 0).endVertex();
     }
 
     private void buildSingleFaceBottom(BufferBuilder bufferBuilder, byte index, double x, double y) {
@@ -119,13 +119,13 @@ public class TapeRenderer extends TileEntitySpecialRenderer<TileEntityTape> {
         double tx = (((double)index - 1) + x) * textureStep;
         double tx2 = tx + textureStep * 0.5;
 
-        bufferBuilder.pos(x, thickness, y).tex(tx, y).endVertex();
-        bufferBuilder.pos(x, thickness, y + 0.5).tex(tx, y + 0.5).endVertex();
-        bufferBuilder.pos(x + 0.5, thickness, y).tex(tx2, y).endVertex();
+        bufferBuilder.pos(x, thickness, y).tex(tx, y).normal(0, 1, 0).endVertex();
+        bufferBuilder.pos(x, thickness, y + 0.5).tex(tx, y + 0.5).normal(0, 1, 0).endVertex();
+        bufferBuilder.pos(x + 0.5, thickness, y).tex(tx2, y).normal(0, 1, 0).endVertex();
 
-        bufferBuilder.pos(x + 0.5, thickness, y + 0.5).tex(tx2, y + 0.5).endVertex();
-        bufferBuilder.pos(x + 0.5, thickness, y).tex(tx2, y).endVertex();
-        bufferBuilder.pos(x, thickness, y + 0.5).tex(tx, y + 0.5).endVertex();
+        bufferBuilder.pos(x + 0.5, thickness, y + 0.5).tex(tx2, y + 0.5).normal(0, 1, 0).endVertex();
+        bufferBuilder.pos(x + 0.5, thickness, y).tex(tx2, y).normal(0, 1, 0).endVertex();
+        bufferBuilder.pos(x, thickness, y + 0.5).tex(tx, y + 0.5).normal(0, 1, 0).endVertex();
     }
 
     private void buildSingleFaceBack(BufferBuilder bufferBuilder, byte index, double x, double y) {
@@ -134,13 +134,13 @@ public class TapeRenderer extends TileEntitySpecialRenderer<TileEntityTape> {
         double tx = (((double)index - 1) + x) * textureStep;
         double tx2 = tx + textureStep * 0.5;
 
-        bufferBuilder.pos(x, y, 1.0 - thickness).tex(tx, y).endVertex();
-        bufferBuilder.pos(x, y + 0.5, 1.0 - thickness).tex(tx, y + 0.5).endVertex();
-        bufferBuilder.pos(x + 0.5, y, 1.0 - thickness).tex(tx2, y).endVertex();
+        bufferBuilder.pos(x, y, 1.0 - thickness).tex(tx, y).normal(0, 0, -1).endVertex();
+        bufferBuilder.pos(x, y + 0.5, 1.0 - thickness).tex(tx, y + 0.5).normal(0, 0, -1).endVertex();
+        bufferBuilder.pos(x + 0.5, y, 1.0 - thickness).tex(tx2, y).normal(0, 0, -1).endVertex();
 
-        bufferBuilder.pos(x + 0.5, y + 0.5, 1.0 - thickness).tex(tx2, y + 0.5).endVertex();
-        bufferBuilder.pos(x + 0.5, y, 1.0 - thickness).tex(tx2, y).endVertex();
-        bufferBuilder.pos(x, y + 0.5, 1.0 - thickness).tex(tx, y + 0.5).endVertex();
+        bufferBuilder.pos(x + 0.5, y + 0.5, 1.0 - thickness).tex(tx2, y + 0.5).normal(0, 0, -1).endVertex();
+        bufferBuilder.pos(x + 0.5, y, 1.0 - thickness).tex(tx2, y).normal(0, 0, -1).endVertex();
+        bufferBuilder.pos(x, y + 0.5, 1.0 - thickness).tex(tx, y + 0.5).normal(0, 0, -1).endVertex();
     }
 
     private void buildSingleFaceFront(BufferBuilder bufferBuilder, byte index, double x, double y) {
@@ -149,13 +149,13 @@ public class TapeRenderer extends TileEntitySpecialRenderer<TileEntityTape> {
         double tx = (((double)index - 1) + x) * textureStep;
         double tx2 = tx + textureStep * 0.5;
 
-        bufferBuilder.pos(x, y, thickness).tex(tx, y).endVertex();
-        bufferBuilder.pos(x + 0.5, y, thickness).tex(tx2, y).endVertex();
-        bufferBuilder.pos(x, y + 0.5, thickness).tex(tx, y + 0.5).endVertex();
+        bufferBuilder.pos(x, y, thickness).tex(tx, y).normal(0, 0, 1).endVertex();
+        bufferBuilder.pos(x + 0.5, y, thickness).tex(tx2, y).normal(0, 0, 1).endVertex();
+        bufferBuilder.pos(x, y + 0.5, thickness).tex(tx, y + 0.5).normal(0, 0, 1).endVertex();
 
-        bufferBuilder.pos(x + 0.5, y + 0.5, thickness).tex(tx2, y + 0.5).endVertex();
-        bufferBuilder.pos(x, y + 0.5, thickness).tex(tx, y + 0.5).endVertex();
-        bufferBuilder.pos(x + 0.5, y, thickness).tex(tx2, y).endVertex();
+        bufferBuilder.pos(x + 0.5, y + 0.5, thickness).tex(tx2, y + 0.5).normal(0, 0, 1).endVertex();
+        bufferBuilder.pos(x, y + 0.5, thickness).tex(tx, y + 0.5).normal(0, 0, 1).endVertex();
+        bufferBuilder.pos(x + 0.5, y, thickness).tex(tx2, y).normal(0, 0, 1).endVertex();
     }
 
     private void buildSingleFaceLeft(BufferBuilder bufferBuilder, byte index, double x, double y) {
@@ -164,13 +164,13 @@ public class TapeRenderer extends TileEntitySpecialRenderer<TileEntityTape> {
         double tx = (((double)index - 1) + x) * textureStep;
         double tx2 = tx + textureStep * 0.5;
 
-        bufferBuilder.pos(1.0 - thickness, x, y).tex(tx, y).endVertex();
-        bufferBuilder.pos(1.0 - thickness, x, y + 0.5).tex(tx, y + 0.5).endVertex();
-        bufferBuilder.pos(1.0 - thickness, x + 0.5, y).tex(tx2, y).endVertex();
+        bufferBuilder.pos(1.0 - thickness, x, y).tex(tx, y).normal(-1, 0, 0).endVertex();
+        bufferBuilder.pos(1.0 - thickness, x, y + 0.5).tex(tx, y + 0.5).normal(-1, 0, 0).endVertex();
+        bufferBuilder.pos(1.0 - thickness, x + 0.5, y).tex(tx2, y).normal(-1, 0, 0).endVertex();
 
-        bufferBuilder.pos(1.0 - thickness, x + 0.5, y + 0.5).tex(tx2, y + 0.5).endVertex();
-        bufferBuilder.pos(1.0 - thickness, x + 0.5, y).tex(tx2, y).endVertex();
-        bufferBuilder.pos(1.0 - thickness, x, y + 0.5).tex(tx, y + 0.5).endVertex();
+        bufferBuilder.pos(1.0 - thickness, x + 0.5, y + 0.5).tex(tx2, y + 0.5).normal(-1, 0, 0).endVertex();
+        bufferBuilder.pos(1.0 - thickness, x + 0.5, y).tex(tx2, y).normal(-1, 0, 0).endVertex();
+        bufferBuilder.pos(1.0 - thickness, x, y + 0.5).tex(tx, y + 0.5).normal(-1, 0, 0).endVertex();
     }
 
     private void buildSingleFaceRight(BufferBuilder bufferBuilder, byte index, double x, double y) {
@@ -179,13 +179,13 @@ public class TapeRenderer extends TileEntitySpecialRenderer<TileEntityTape> {
         double tx = (((double)index - 1) + x) * textureStep;
         double tx2 = tx + textureStep * 0.5;
 
-        bufferBuilder.pos(thickness, x, y).tex(tx, y).endVertex();
-        bufferBuilder.pos(thickness, x + 0.5, y).tex(tx2, y).endVertex();
-        bufferBuilder.pos(thickness, x, y + 0.5).tex(tx, y + 0.5).endVertex();
+        bufferBuilder.pos(thickness, x, y).tex(tx, y).normal(1, 0, 0).endVertex();
+        bufferBuilder.pos(thickness, x + 0.5, y).tex(tx2, y).normal(1, 0, 0).endVertex();
+        bufferBuilder.pos(thickness, x, y + 0.5).tex(tx, y + 0.5).normal(1, 0, 0).endVertex();
 
-        bufferBuilder.pos(thickness, x + 0.5, y + 0.5).tex(tx2, y + 0.5).endVertex();
-        bufferBuilder.pos(thickness, x, y + 0.5).tex(tx, y + 0.5).endVertex();
-        bufferBuilder.pos(thickness, x + 0.5, y).tex(tx2, y).endVertex();
+        bufferBuilder.pos(thickness, x + 0.5, y + 0.5).tex(tx2, y + 0.5).normal(1, 0, 0).endVertex();
+        bufferBuilder.pos(thickness, x, y + 0.5).tex(tx, y + 0.5).normal(1, 0, 0).endVertex();
+        bufferBuilder.pos(thickness, x + 0.5, y).tex(tx2, y).normal(1, 0, 0).endVertex();
     }
 
 }

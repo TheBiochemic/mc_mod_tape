@@ -39,6 +39,16 @@ public class ItemBlockTape extends ItemBlock {
     }
 
     @Override
+    public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+        return false;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment) {
+        return false;
+    }
+
+    @Override
     public String getUnlocalizedName(ItemStack stack) {
         return TapeMod.MODID + "." + this.registryName;
     }
@@ -94,7 +104,8 @@ public class ItemBlockTape extends ItemBlock {
                 TileEntityTape entity = (TileEntityTape) w.getTileEntity(xyz);
                 updateStateFromFacing(this.tapeVariant, hitX, hitY, hitZ, facing, entity);
 
-                SoundType soundtype = BlockRegistry.TAPE.getSoundType(defaultState, w, xyz, p);
+                if (!BlockTape.clearUnsupportedFaces(w, xyz, state)) {
+                    SoundType soundtype = BlockRegistry.TAPE.getSoundType(defaultState, w, xyz, p);
 
                     w.playSound(p, xyz,
                         soundtype.getPlaceSound(),
@@ -103,9 +114,9 @@ public class ItemBlockTape extends ItemBlock {
                         soundtype.getPitch() * 0.8F);
 
                     stack.damageItem(1, p);
-
-                    entity.markDirty();
-                w.markAndNotifyBlock(xyz, null, state, state, 2);
+                } else{
+                    return EnumActionResult.FAIL;
+                }
             }
 
             return EnumActionResult.SUCCESS;
@@ -115,8 +126,6 @@ public class ItemBlockTape extends ItemBlock {
     }
 
     private static TileEntityTape updateStateFromFacing(TapeVariants variant, float hitX, float hitY, float hitZ, EnumFacing facing, TileEntityTape entity) {
-
-        TapeMod.logger.log(Level.INFO, "hit at (" + hitX + ", " + hitY + "," + hitZ + "),  facing " + facing);
 
         switch(facing) {
             case UP: {

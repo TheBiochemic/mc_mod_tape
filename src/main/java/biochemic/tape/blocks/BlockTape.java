@@ -97,18 +97,6 @@ public class BlockTape extends Block implements ITileEntityProvider {
         return EnumBlockRenderType.MODEL;
     }
 
-    /*public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        IBlockState downState = worldIn.getBlockState(pos.down());
-
-        if(downState.isSideSolid(worldIn, pos, EnumFacing.UP))
-            return true;
-
-        if(downState.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) == BlockFaceShape.SOLID)
-            return true;
-
-        return false;
-    }*/
-
     public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
         return true;
     }
@@ -117,9 +105,14 @@ public class BlockTape extends Block implements ITileEntityProvider {
 
     }
 
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
-    {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        clearUnsupportedFaces(worldIn, pos, state);
+    }
+
+    public static boolean clearUnsupportedFaces(World worldIn, BlockPos pos, IBlockState state) {
+
         TileEntityTape tileEntity = (TileEntityTape) worldIn.getTileEntity(pos);
+        boolean hasClearedFaces = false;
 
         boolean bottomNeedsSupport = tileEntity.bottom.needsSupport();
         boolean topNeedsSupport = tileEntity.top.needsSupport();
@@ -129,34 +122,40 @@ public class BlockTape extends Block implements ITileEntityProvider {
         boolean backNeedsSupport = tileEntity.back.needsSupport();
 
         //Check the different faces, if they're solid, and if not, clear them
-        if(!worldIn.isSideSolid(pos.down(), EnumFacing.UP)) {
+        if(!worldIn.isSideSolid(pos.down(), EnumFacing.UP) && tileEntity.bottom.needsSupport()) {
             bottomNeedsSupport = false;
             tileEntity.bottom.clearFace();
+            hasClearedFaces = true;
         }
 
-        if(!worldIn.isSideSolid(pos.up(), EnumFacing.DOWN)) {
+        if(!worldIn.isSideSolid(pos.up(), EnumFacing.DOWN) && tileEntity.top.needsSupport()) {
             topNeedsSupport = false;
             tileEntity.top.clearFace();
+            hasClearedFaces = true;
         }
 
-        if(!worldIn.isSideSolid(pos.south(), EnumFacing.NORTH)) {
+        if(!worldIn.isSideSolid(pos.south(), EnumFacing.NORTH) && tileEntity.back.needsSupport()) {
             backNeedsSupport = false;
             tileEntity.back.clearFace();
+            hasClearedFaces = true;
         }
 
-        if(!worldIn.isSideSolid(pos.north(), EnumFacing.SOUTH)) {
+        if(!worldIn.isSideSolid(pos.north(), EnumFacing.SOUTH) && tileEntity.front.needsSupport()) {
             frontNeedsSupport = false;
             tileEntity.front.clearFace();
+            hasClearedFaces = true;
         }
 
-        if(!worldIn.isSideSolid(pos.east(), EnumFacing.WEST)) {
+        if(!worldIn.isSideSolid(pos.east(), EnumFacing.WEST) && tileEntity.left.needsSupport()) {
             leftNeedsSupport = false;
             tileEntity.left.clearFace();
+            hasClearedFaces = true;
         }
 
-        if(!worldIn.isSideSolid(pos.west(), EnumFacing.EAST)) {
+        if(!worldIn.isSideSolid(pos.west(), EnumFacing.EAST) && tileEntity.right.needsSupport()) {
             rightNeedsSupport = false;
             tileEntity.right.clearFace();
+            hasClearedFaces = true;
         }
 
         if(!bottomNeedsSupport && !topNeedsSupport && !leftNeedsSupport && !rightNeedsSupport && !frontNeedsSupport && !backNeedsSupport) {
@@ -165,6 +164,8 @@ public class BlockTape extends Block implements ITileEntityProvider {
             tileEntity.markDirty();
             worldIn.markAndNotifyBlock(pos, null, state, state, 2);
         }
+
+        return hasClearedFaces;
     }
 
     @Override

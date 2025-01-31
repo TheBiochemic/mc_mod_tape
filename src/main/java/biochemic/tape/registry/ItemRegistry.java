@@ -20,7 +20,7 @@ public class ItemRegistry {
     public static void registerItems(RegistryEvent.Register<Item> event) {
 
         //BlockItems
-        for(TapeVariants tapeVariant : TapeVariants.LEGAL_TAPE_VARIANTS) {
+        for(TapeVariants tapeVariant : TapeVariants.getLegalTapeVariants()) {
 
             ItemBlockTape blockTape = new ItemBlockTape(tapeVariant, tapeVariant.registryName);
             blockTape.setRegistryName(tapeVariant.registryName);
