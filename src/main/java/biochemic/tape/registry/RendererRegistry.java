@@ -2,7 +2,7 @@ package biochemic.tape.registry;
 
 import biochemic.tape.TapeMod;
 import biochemic.tape.blocks.BlockTape;
-import biochemic.tape.items.ItemBlockTape;
+import biochemic.tape.items.ItemTape;
 import biochemic.tape.renderer.TapeRenderer;
 import biochemic.tape.tileentity.TileEntityTape;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -20,7 +20,7 @@ public class RendererRegistry {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
 
-        for(ItemBlockTape itemTape : ItemRegistry.TAPES.values()) {
+        for(ItemTape itemTape : ItemRegistry.TAPES.values()) {
             registerModel( itemTape, 0, "inventory" );
         }
     }

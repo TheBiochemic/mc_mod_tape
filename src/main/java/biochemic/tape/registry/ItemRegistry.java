@@ -1,7 +1,6 @@
 package biochemic.tape.registry;
 
 import biochemic.tape.TapeMod;
-import biochemic.tape.blocks.BlockTape;
 import biochemic.tape.items.*;
 import biochemic.tape.util.TapeVariants;
 import net.minecraft.item.*;
@@ -14,20 +13,18 @@ import java.util.HashMap;
 @Mod.EventBusSubscriber(modid = TapeMod.MODID)
 public class ItemRegistry {
 
-    public static HashMap<String, ItemBlockTape> TAPES = new HashMap<>(10);
+    public static HashMap<String, ItemTape> TAPES = new HashMap<>(10);
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 
-        //BlockItems
+        //Tape Items
         for(TapeVariants tapeVariant : TapeVariants.getLegalTapeVariants()) {
-
-            ItemBlockTape blockTape = new ItemBlockTape(tapeVariant, tapeVariant.registryName);
+            ItemTape blockTape = new ItemTape(tapeVariant, tapeVariant.registryName);
             blockTape.setRegistryName(tapeVariant.registryName);
             TAPES.put(tapeVariant.registryName, blockTape);
+            event.getRegistry().register(blockTape);
         }
-
-        event.getRegistry().registerAll(TAPES.values().toArray(new ItemBlockTape[TAPES.size()]));
     }
 
 }

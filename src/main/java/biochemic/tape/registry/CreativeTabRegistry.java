@@ -1,6 +1,7 @@
 package biochemic.tape.registry;
 
 import biochemic.tape.TapeMod;
+import biochemic.tape.util.Configuration;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -14,9 +15,14 @@ public class CreativeTabRegistry {
 
                 @Override
                 public ItemStack getTabIconItem() {
-                    return new ItemStack(ItemRegistry.TAPES.get("tape_protection"));
+                    if (Configuration.enablePatterns) {
+                        return new ItemStack(ItemRegistry.TAPES.get("tape_protection"));
+                    } else if (Configuration.enableColors) {
+                        return new ItemStack(ItemRegistry.TAPES.get("tape_purple"));
+                    } else {
+                        return new ItemStack(ItemRegistry.TAPES.get("tape_blank"));
+                    }
                 }
-
             };
         }
     }

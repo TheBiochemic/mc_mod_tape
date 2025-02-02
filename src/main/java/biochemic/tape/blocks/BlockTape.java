@@ -3,12 +3,13 @@ package biochemic.tape.blocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import biochemic.tape.items.ItemTape;
+import biochemic.tape.registry.ItemRegistry;
 import biochemic.tape.tileentity.TileEntityTape;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -78,6 +80,19 @@ public class BlockTape extends Block implements ITileEntityProvider {
         }
 
         return TAPE_MULTI_AABB;
+    }
+
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+
+        return new ItemStack(ItemTape.getVariantFromFacing(
+            pos, 
+            (float)(target.hitVec.x - pos.getX()),
+            (float)(target.hitVec.y - pos.getY()),
+            (float)(target.hitVec.z - pos.getZ()),
+            target.sideHit,
+            world
+        ));
+
     }
 
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
